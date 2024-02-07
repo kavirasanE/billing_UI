@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard/>}></Route>
         <Route path="/subscription" element={ <ManageSubscription/>}></Route>
         <Route path="/users" element={ <Users/>}></Route>
-        <Route path="/profile" element={ <Profile/>}></Route>
+        <Route path="/addsubscription" element={ <Profile/>}></Route>
       </Route>
     </Routes>
     <Footer/>

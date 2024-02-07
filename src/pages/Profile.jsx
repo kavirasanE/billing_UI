@@ -80,6 +80,7 @@ const Profile = () => {
         />
       </div>
       <div className="bg-orange-400 mx-10  mb-20 p-10 rounded-2xl shadow-xl shadow-gray-400">
+        <textarea className="w-full rounded-md shadow-md p-2 border-blue-700 outline-none " placeholder="Enter your Comments"></textarea>
   <form>
     <div className=" grid grid-cols-2">
       <div className="flex flex-col justify-start p-2 m-2 gap-2">

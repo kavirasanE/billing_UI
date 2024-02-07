@@ -7,17 +7,16 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <>
-    {/* <div className="">
-    <img
+      <img
         src={billing}
         alt="billing-image"
-        className=""
-       
+        className="w-full h-screen bg-gradient-to-b from-gray-80 via-opacity-80 to-opacity-100 bg-cover bg-center relative "
+        style={{ backgroundImage: "url(background.jpg)"}}
       />
-    </div> */}
-    <div className="flex items-center justify-center ">
-        <div className="flex justify-center items-center mt-40 absolute top-0 bg-slate-50 shadow-xl ">
-          <div className="border-2 rounded-2xl ">
+
+      <div className="sm:flex items-center justify-center ">
+        <div className=" mt-40  absolute top-0 bg-slate-50 shadow-xl border-2 rounded-2xl shadow-black ">
+          <div >
             <div className="font-bold text-center text-2xl m-4">Login</div>
 
             <div className="flex items-center m-5 mx-8 ">
@@ -25,7 +24,7 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Enter your username"
-                className="border-2 rounded-xl shadow-2xl text-center px-20 p-2 "
+                className="border-2 rounded-xl shadow-2xl text-start px-20 p-2 "
               />
             </div>
 
@@ -34,17 +33,20 @@ const Login = () => {
               <input
                 placeholder="Enter your password"
                 type="password"
-                className="border-2 rounded-xl shadow-2xl text-center px-20 p-2 x"
+                className="border-2 rounded-xl shadow-2xl text-start px-20 p-2 x"
               />
             </div>
-            <div  type="button" className="text-center  rounded-3xl bg-orange-400  p-4 mx-20 my-10 drop-shadow-2xl shadow-black">
-              <Link to={'/dashboard'} className="p-4 text-white font-bold ">Login</Link>
+            <div
+              type="button"
+              className="text-center rounded-3xl bg-orange-400 my-10 p-3 mx-20 drop-shadow-2xl shadow-black"
+            >
+              <Link to={"/dashboard"} className="p-4 text-white font-bold ">
+                Login
+              </Link>
             </div>
           </div>
         </div>
       </div>
-
-     
     </>
   );
 };
