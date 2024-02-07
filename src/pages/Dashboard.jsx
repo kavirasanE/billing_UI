@@ -1,4 +1,6 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
+import DataContext from "../context/DataProvider";
+
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import DashboardTable from "../components/DashboardTable";
@@ -6,6 +8,35 @@ import { Link } from "react-router-dom";
 //  import DashboardTable from "../pages/Dashboard";
 
 const Dashboard = () => {
+  const { baseURL } = useContext(DataContext);
+
+  let [device, setDevice] = useState([]);
+  let [stats, setStats] = useState([]);
+  let [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    fetchUserDevice();
+  }, []);
+
+  async function fetchUserDevice() {
+    try {
+      let getServerResponse = await fetch(`${baseURL}alldevice/approval`);
+      let getData = await getServerResponse.json();
+      if (getServerResponse.ok) {
+        setDevice(getData.results);
+        setStats(getData.stats);
+        console.log(getData.results);
+        let columns = Object.keys(getData.results[0]);
+        setColumns(
+          columns.map((itm) => {
+            return { id: itm, name: itm };
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div>
       <Navbar />
@@ -34,15 +65,15 @@ const Dashboard = () => {
         </Link>
       </div>
       <div className="grid md:grid-cols-5 grid-cols-2 mt-2">
-        <Card name={"Subscribed Users"} />
-        <Card name={"Not Subscribed"} />
-        <Card name={"Approved"} />
-        <Card name={"Pending"} />
-        <Card name={"Expired"} />
+        <Card name={"Subscribed Users"} count={stats[0]?.SUBCRIBED_USERS} />
+        <Card name={"Not Subscribed"} count={stats[0]?.NOT_SUBCRIBED} />
+        <Card name={"Approved"} count={stats[0]?.APPROVED_USERS} />
+        <Card name={"Pending"} count={stats[0]?.PENDING_APPROVAL} />
+        <Card name={"Expired"} count={stats[0]?.EXPIRED} />
       </div>
       <div>
         <div className="mx-4 border-none">
-          <DashboardTable />
+          <DashboardTable columns={columns} rows={device} />
         </div>
       </div>
     </div>

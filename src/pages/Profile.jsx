@@ -83,8 +83,11 @@ const Profile = () => {
           className=" mx-20 px-4 py-2 rounded-xl  border-2 shadow-2xl"
         />
       </div>
+      <div className="md:mx-20 mx-5 my-10">
+      <textarea className="w-full rounded-md shadow-black shadow-lg p-4 border-blue-700 outline-none text-black " placeholder="Enter your Comments"></textarea>
+      </div>
       <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white md:mx-10 mb-20 p-10 rounded-2xl shadow-xl shadow-gray-400">
-        <textarea className="w-full rounded-md shadow-md p-2 border-blue-700 outline-none text-black " placeholder="Enter your Comments"></textarea>
+        
   <form>
     <div className=" grid grid-cols-1 md:grid-cols-2">
       <div className="flex flex-col justify-start p-2 md:m-2 gap-2">
@@ -187,7 +190,11 @@ const Profile = () => {
           className="p-2 md:mx-6 rounded-lg outline-none text-black border-gray-200"
         />
       </div>
+      
     </div>
+    <div className="my-6 flex  items-center justify-center">
+        <button className="text-black bg-white p-2 px-10 font-bold rounded-xl">Submit</button>
+      </div>
   </form>
 </div>
 
