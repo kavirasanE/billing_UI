@@ -10,7 +10,7 @@ const Card = (props) => {
           <GiFallingStar className="w-7 h-7 md:mx-4 " />
         </div>
 
-        <p className="font-semibold xl:text-xl text-sm"> {props.name}</p>
+        <p className="font-semibold xl:text-xl text-sm whitespace-nowrap"> {props.name}</p>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ const Users = () => {
           Manage Subscription
         </Link>
       </div>
-      <div className="justify-start flex items-center m-4 mx-32 ">
+      <div className="justify-start flex items-center m-4 md:mx-32 ">
         <Link to={'/addsubscription'}
           type="button"
           className="shadow-xl p-4 whitespace-nowrap rounded-2xl bg-gradient-to-r from-blue-500 to-blue-900 text-white subpixel-antialiased font-extrabold transition transform duration-300 hover:scale-105 hover:shadow-xl"

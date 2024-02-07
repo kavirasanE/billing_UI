@@ -34,7 +34,7 @@ const Dashboard = () => {
         </Link>
       </div>
       <div className="grid md:grid-cols-5 grid-cols-2 mt-2">
-        <Card name={"Subscribed_Users"} />
+        <Card name={"Subscribed Users"} />
         <Card name={"Not Subscribed"} />
         <Card name={"Approved"} />
         <Card name={"Pending"} />

@@ -114,7 +114,7 @@ const UsersTable = () => {
                 {columns.map((column) => (
                   <>
                     <TableCell key={column.id} className="flex ">
-                      <p className=" font-bold text-lg text-center ">
+                      <p className=" font-bold text-lg text-center whitespace-nowrap">
                         {column.name}
                       </p>
                     </TableCell>
@@ -132,7 +132,7 @@ const UsersTable = () => {
                           let value = row[column.id];
                           return (
                             <TableCell className=" flex ">
-                              <p className="text-md text-center">{value}</p>
+                              <p className="text-md text-center whitespace-nowrap">{value}</p>
                             </TableCell>
                           );
                         })}
