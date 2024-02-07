@@ -68,7 +68,6 @@ const ManageSubscriptionTable = () => {
     },
     // Add more rows as needed
   ];
-  
 
   return (
     <div>
@@ -89,9 +88,6 @@ const ManageSubscriptionTable = () => {
                     </TableCell>
                   </>
                 ))}
-                <TableCell>
-                  <p className="font-bold text-lg text-center">Action</p>
-                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -104,17 +100,12 @@ const ManageSubscriptionTable = () => {
                           let value = row[column.id];
                           return (
                             <TableCell>
-                              <p className=" text-md font-semibold text-center whitespace-nowrap">{value}</p>
+                              <p className=" text-md font-semibold text-center whitespace-nowrap">
+                                {value}
+                              </p>
                             </TableCell>
                           );
                         })}
-                      <TableCell>
-                        <div className="flex justify-center">
-                          <button className="border-2 shadow-xl p-2 px-8 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-extrabold ">
-                            Edit
-                          </button>
-                        </div>
-                      </TableCell>
                     </TableRow>
                   );
                 })}
