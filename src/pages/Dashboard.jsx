@@ -25,7 +25,6 @@ const Dashboard = () => {
       if (getServerResponse.ok) {
         setDevice(getData.results);
         setStats(getData.stats);
-        console.log(getData.results);
         let columns = Object.keys(getData.results[0]);
         setColumns(
           columns.map((itm) => {
@@ -37,6 +36,26 @@ const Dashboard = () => {
       console.log(err);
     }
   }
+
+  async function handleApprove(eve) {
+    try {
+      const data = { UDR_Id: eve.target.id };
+      const response = await fetch(`${baseURL}alldevice/updateapproval`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(response);
+      if (response.ok) {
+        fetchUserDevice();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -73,7 +92,14 @@ const Dashboard = () => {
       </div>
       <div>
         <div className="mx-4 border-none">
-          <DashboardTable columns={columns} rows={device} />
+          <DashboardTable
+            columns={columns}
+            rows={device}
+            action={{
+              isReq: true,
+              approve: { status: false, handleFunction: handleApprove },
+            }}
+          />
         </div>
       </div>
     </div>

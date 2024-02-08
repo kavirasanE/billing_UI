@@ -1,9 +1,38 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
-import UsersTable from "../components/UsersTable";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import DataContext from "../context/DataProvider";
+import DashboardTable from "../components/DashboardTable";
+
 const Users = () => {
+  const { baseURL } = useContext(DataContext);
+  let navigate = useNavigate();
+  let [device, setDevice] = useState([]);
+  let [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    fetchUserDevice();
+  }, []);
+
+  async function fetchUserDevice() {
+    try {
+      let getServerResponse = await fetch(`${baseURL}alldevice/getall`);
+
+      let getData = await getServerResponse.json();
+      if (getServerResponse.ok) {
+        setDevice(getData.results);
+        let columns = Object.keys(getData.results[0]);
+        setColumns(
+          columns.map((itm) => {
+            return { id: itm, name: itm };
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div>
       <Navbar />
@@ -32,7 +61,8 @@ const Users = () => {
         </Link>
       </div>
       <div className="justify-start flex items-center m-4 md:mx-32 ">
-        <Link to={'/addsubscription'}
+        <Link
+          to={"/addsubscription"}
           type="button"
           className="shadow-xl p-4 whitespace-nowrap rounded-2xl bg-gradient-to-r from-blue-500 to-blue-900 text-white subpixel-antialiased font-extrabold transition transform duration-300 hover:scale-105 hover:shadow-xl"
         >
@@ -40,7 +70,11 @@ const Users = () => {
         </Link>
       </div>
       <div className="m-4 my-8 border-none">
-        <UsersTable />
+        <DashboardTable
+          columns={columns}
+          rows={device}
+          action={{isReq:false, approve: { status: false, handleFunction: null } }}
+        />
       </div>
     </div>
   );

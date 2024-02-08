@@ -8,160 +8,7 @@ import {
   TableBody,
 } from "@mui/material";
 
-const DashboardTable = ({ columns,rows }) => {
-  // {columns,rows}
-
-  // const columns = [
-  //   { id: "id", name: "S.no" },
-  //   { id: "DeviceId", name: "Device ID" },
-  //   { id: "Store Name", name: "Store Name" },
-  //   { id: "email", name: "Email" },
-  //   { id: "phone", name: "Phone" },
-  //   { id: "SubscriptionStatus", name: "Subscription Status" },
-  //   { id: "Status", name: "Status" },
-  // ];
-  // const rows = [
-  //   {
-  //     id: 1,
-  //     DeviceId: "ABC123",
-  //     "Store Name": "Store A",
-  //     email: "storeA@email.com",
-  //     phone: "123-456-7890",
-  //     SubscriptionStatus: "Active",
-  //     Status: "Online",
-  //     Action: "Edit",
-  //   },
-  //   {
-  //     id: 2,
-  //     DeviceId: "XYZ456",
-  //     "Store Name": "Store B",
-  //     email: "storeB@email.com",
-  //     phone: "987-654-3210",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 3,
-  //     DeviceId: "PQR789",
-  //     "Store Name": "Store C",
-  //     email: "storeC@email.com",
-  //     phone: "555-123-4567",
-  //     SubscriptionStatus: "Active",
-  //     Status: "Online",
-  //     Action: "Edit",
-  //   },
-  //   {
-  //     id: 4,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 5,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 6,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 7,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 8,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 9,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 10,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 11,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   {
-  //     id: 12,
-  //     DeviceId: "LMN012",
-  //     "Store Name": "Store D",
-  //     email: "storeD@email.com",
-  //     phone: "333-888-9999",
-  //     SubscriptionStatus: "Inactive",
-  //     Status: "Offline",
-  //     Action: "Delete",
-  //   },
-  //   // Add more rows as needed
-  // ];
-
-  // async function handleApprove(eve) {
-  //   try {
-  //     const data = { UDR_Id: eve.target.id };
-  //     const response = await fetch(`${baseURL}alldevice/updateapproval`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //     console.log(response);
-  //     if (response.ok) {
-  //       fetchUserDevice();
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+const DashboardTable = ({ columns, rows, action }) => {
   return (
     <div>
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -181,9 +28,12 @@ const DashboardTable = ({ columns,rows }) => {
                     </TableCell>
                   </>
                 ))}
-                <TableCell>
-                  <p className="font-bold text-lg text-center">Action</p>
-                </TableCell>
+
+                {action.isReq && (
+                  <TableCell>
+                    <p className="font-bold text-lg text-center">Action</p>
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -193,7 +43,6 @@ const DashboardTable = ({ columns,rows }) => {
                     <TableRow key={i} fixed>
                       {columns &&
                         columns.map((column, i) => {
-                          console.log(column)
                           let value = row[column.id];
                           return (
                             <TableCell>
@@ -203,13 +52,20 @@ const DashboardTable = ({ columns,rows }) => {
                             </TableCell>
                           );
                         })}
-                      <TableCell>
-                        <div className="flex justify-center">
-                          <button className="border-2 shadow-xl p-2 px-8 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold ">
-                            Approve
-                          </button>
-                        </div>
-                      </TableCell>
+
+                      {action.approve.status && (
+                        <TableCell>
+                          <div className="flex justify-center">
+                            <button
+                              className="border-2 shadow-xl p-2 px-8 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold"
+                              id={row.UDR_Id}
+                              onClick={action.approve.handleFunction}
+                            >
+                              Approve
+                            </button>
+                          </div>
+                        </TableCell>
+                      )}
                     </TableRow>
                   );
                 })}
