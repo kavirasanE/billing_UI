@@ -1,9 +1,41 @@
-import React from "react";
+import { useEffect, useContext, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-
-import ManageSubscriptionTable from "../components/ManageSubscriptionTable";
+import DataContext from "../context/DataProvider"
+import DashboardTable from "../components/DashboardTable";
 const ManageSubscription = () => {
+  const { baseURL } = useContext(DataContext);
+
+  let [subcription, setSubcription] = useState([]);
+  let [device, setDevice] = useState([]);
+  let [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    fetchSubcription();
+  }, []);
+
+  async function fetchSubcription() {
+    try {
+      let getServerResponse = await fetch(`${baseURL}subcriptiontype`);
+      console.log(getServerResponse);
+      if (getServerResponse.ok) {
+        let getData = await getServerResponse.json();
+        setSubcription(getData.results);
+        setDevice(getData.results)
+        let columns = Object.keys(getData.results[0]);
+        setColumns(
+          columns.map((itm) => {
+            return { id: itm, name: itm };
+          })
+        );
+        console.log(getData.results);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+ 
   return (
     <div>
       <Navbar />
@@ -34,7 +66,14 @@ const ManageSubscription = () => {
 
       
       <div className="m-4 border-none">
-        <ManageSubscriptionTable />
+      <DashboardTable
+            columns={columns}
+            rows={device}
+            action={{
+              isReq: true,
+              approve: { status: false, handleFunction: null, admin:true },
+            }}
+          />
       </div>
     </div>
   );

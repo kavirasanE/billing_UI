@@ -87,7 +87,7 @@ const Profile = () => {
         }
       } else {
         console.log("missing");
-        getTransId.current.placeholder = "*Required";
+        getTransId.current.placeholder = "Enter Your Comments*";
       }
     } catch (err) {
       console.log(err);
@@ -174,13 +174,13 @@ const Profile = () => {
       <div>
         {selectedDevice?.UDR_Id && selectedSubcription?.Sub_Type_Id ? (
           <button
-            className="btn btn-primary col"
+            className="text-black antialiased bg-orange-400 p-3 px-10 text-xl mx-48 mb-5 font-bold rounded-xl"
             onClick={handleSubcriptionSave}
           >
             Save
           </button>
         ) : (
-          <p className="col-12">Missing required fields</p>
+          <p className=" text-red-600 text-center font-semibold text-lg mx-48 my-4"> * Missing required fields</p>
         )}
       </div>
       <div className="bg-gradient-to-r from-blue-500 to-blue-900 text-white md:mx-10 mb-20 p-10 rounded-2xl shadow-xl shadow-gray-400">
@@ -202,11 +202,9 @@ const Profile = () => {
                 type="checkbox"
                 name="IsGSTShop"
                 className=" mx-4 rounded-lg outline-none text-black font-semibold antialiased border-gray-200"
-                checked={
-                  selectedDevice.IsGSTShop.toLowerCase() == "true"
-                    ? true
-                    : false
-                }
+                // checked={
+                //   selectedDevice.IsGSTShop.toLowerCase() =='false' ? true : false
+                // }
               />
             </div>
             <div className="flex flex-col justify-start p-2 md:m-2 gap-2">
@@ -294,11 +292,6 @@ const Profile = () => {
                 }
               />
             </div>
-          </div>
-          <div className="my-6 flex  items-center justify-center">
-            <button className="text-black antialiased bg-white p-2 px-10 font-bold rounded-xl">
-              Submit
-            </button>
           </div>
         </form>
       </div>

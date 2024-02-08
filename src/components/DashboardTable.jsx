@@ -66,6 +66,27 @@ const DashboardTable = ({ columns, rows, action }) => {
                           </div>
                         </TableCell>
                       )}
+                       {action.approve.admin && (
+                        <TableCell>
+                          <div className="flex justify-center gap-5">
+                            <button
+                              className="border-2 shadow-xl p-2 px-8 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white font-bold"
+                              id={row.UDR_Id}
+                              onClick={action.approve.handleFunction}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="border-2 shadow-xl p-2 px-8 rounded-2xl bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-green-400 hover:to-blue-500 text-white font-bold"
+                              id={row.UDR_Id}
+                              onClick={action.approve.handleFunction}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </TableCell>
+                      )}
+
                     </TableRow>
                   );
                 })}
