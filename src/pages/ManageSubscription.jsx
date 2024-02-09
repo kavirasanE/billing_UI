@@ -70,8 +70,8 @@ const ManageSubscription = () => {
             columns={columns}
             rows={device}
             action={{
-              isReq: true,
-              approve: { status: false, handleFunction: null, admin:true },
+              isReq: false,
+              approve: { status: false, handleFunction: null, admin:false },
             }}
           />
       </div>
